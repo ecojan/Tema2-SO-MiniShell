@@ -1,0 +1,41 @@
+//////////////////////////////////////////////////////////////////////////////////////
+Tema 2 ASC 2017 -  MiniShell
+Cojan Eugen Nicolae
+
+Detalii implementare:
+	Am pornit de la scheletul de cod oferit pe github-ul pentru SO si am
+inceput sa completez zonele unde erau TODO-uri din fisierul cmd.c.Folosind
+parserul oferit in schelet am completat zona de parsarea a comenzilor,
+in functie de operatorul comenzii primite.
+	In cadrul parsarii unei comenzi simple, daca aceasta este o comanda
+externa fac fork, in copil apelez o functie creata care sa se ocupe de
+redirectari, execut comanda, si astept revenirea in parent.
+	Am preluat o functia do_redirect din laboratorul 3 si am adaptato
+un pic pentru cazurile temei.
+	Functia care se ocupa de redirectari trateaza special cazul in care
+redirectarea este facuta pentru o comanda "cd" si doar creeaza folderul
+fara sa mai redirecteze filedescriptorul catre el.(incercat sa imit
+functionalitatea din bash).
+	La rularea in paralel a 2 comenzi, se face fork, copilul executa o
+comanda si parintele pe cealalta.Cand parintele isi termina comanda
+intra in wait sa astepte copilul.
+	La rularea pe pipe,se salveaza file descriptorii pentru in si out,
+se creeaza un pipe, fork, se fac redirectarile catre pipe, execut prima
+comanda in copil si a doua in parinte.Parintele isi asteapte copilul.
+Se refac file descriptorii initiali si se inchid capetele pipe-ului.
+	Deasemenea am considerat hint-urile cu TODO atat de bune incat le-am lasat
+ca si comentarii de cod acolo unde am considerat necesar stergand doar partea
+de "TODO".
+
+Dificultati intampinate:
+	1.Initial am avut impresia ca sunt foarte multe chestii in scheletul
+de cod, am stat sa ma uit pe fiecare sursa sa inteleg si am vazut exemplele
+oferite. Dupa am vazut defapt ca ajutorul oferit de schelet este foarte mare.
+	2.Din dorita de a nu fi fara obraz, am semnat sursele doar acolo unde
+se aflau TODO-uri (cmd.c, cmd.h) deoarece doar aici am intervenit cu
+modificari.
+	
+Link repository SO cu schelet :
+https://github.com/systems-cs-pub-ro/so-assignments/tree/master/2-minishell/skel-linux
+
+//////////////////////////////////////////////////////////////////////////////////////
